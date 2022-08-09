@@ -4,7 +4,7 @@
 include 'Telegram.php';
 $telegram = new Telegram('5594871269:AAEiMFlohmqlRT1tlkRCkRYIFoxx3tMqJHs');
 
-$content = array('chat_id' => '1490424185', 'text' => 'Testzz');
+$content = array('chat_id' => '1490424185', 'text' => 'Alhamdulillah');
 $telegram->sendMessage($content);
 
 ?>
