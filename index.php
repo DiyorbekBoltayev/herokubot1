@@ -5,9 +5,24 @@ include 'Telegram.php';
 $telegram = new Telegram('5594871269:AAEiMFlohmqlRT1tlkRCkRYIFoxx3tMqJHs');
 $chat_id=$telegram->ChatID();
 $text=$telegram->Text();
-$content = array('chat_id' => $chat_id, 'text' => 'Bot ishlab chiqarilish jarayonida.
-Iltimos keyinroq qayta urinib ko\'ring.
-Siz yuborgan matn :'.$text);
-$result=$telegram->sendMessage($content);
-echo "ishladi";
-?>
+
+if($text=="/start"){
+    $option=[
+      [$telegram->buildKeyboardButton('📜 Biz haqimizda')],
+      [$telegram->buildKeyboardButton('🚛 Buyurtma berish')],
+    ];
+    $keyboard=$telegram->buildKeyBoard($option,'false','true');
+    $content=[
+        'chat_id'=>$chat_id,
+        'text'=>"Assalomu alaykum, Botimizga xush kelibsiz !  Bot orqali masofadan turib 🍯 asal buyurtma qilishingiz mumkin !",
+        'reply_markup'=>$keyboard
+    ];
+    $telegram->sendMessage($content);
+}elseif ($text=="📜 Biz haqimizda"){
+    $content=[
+        'chat_id'=>$chat_id,
+        'text'=>"Biz haqimizda bilib oling"
+    ];
+    $telegram->sendMessage($content);
+}
+
