@@ -50,7 +50,6 @@ if($text=='/start'){
     || $text=='3 kilogramm 250 000'
     || $text=='5 kilogramm 400 000'
     || $text=='10 kilogramm 750 000'
-    || $text=='nega'
 ){
     $option=[
       [$telegram->buildKeyboardButton('📱 Telefon raqamni yuborish',$request=true)]
@@ -61,6 +60,7 @@ if($text=='/start'){
         'reply_markup'=>$keyboard,
         'text'=>"✅ Kerakli miqdor tanlandi . Telefon raqamingizni yuboring 👇"
     ];
+    $telegram->sendMessage($content);
 }
 
 
