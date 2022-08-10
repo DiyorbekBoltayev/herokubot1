@@ -69,7 +69,7 @@ elseif ($text=='0.5 kilogramm - 💵 50 000 so`m'
     $d=json_encode($message,JSON_PRETTY_PRINT);
     $content=[
         'chat_id'=>$chat_id,
-        'text'=>$d
+        'text'=>$message['contact']['phone_number']
     ];
     $telegram->sendMessage($content);
 
