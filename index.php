@@ -20,17 +20,10 @@ if($text=='/start'){
     ];
     $telegram->sendMessage($content);
 
-    $content=[
-        'chat_id'=>$chat_id,
-        'text'=>"$text ichi"
-
-    ];
-    $telegram->sendMessage($content);
-
 }elseif ($text=='📜 Biz haqimizda'){
     $content=[
         'chat_id'=>$chat_id,
-        'text'=>"Biz haqimizda bilib oling"
+        'text'=>"Biz haqimizda bilib oling https://telegra.ph/Biz-haqimizda-08-10"
     ];
     $telegram->sendMessage($content);
 }
