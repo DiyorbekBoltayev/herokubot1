@@ -25,4 +25,10 @@ if($text=="/start"){
     ];
     $telegram->sendMessage($content);
 }
+$content=[
+    'chat_id'=>$chat_id,
+    'text'=>"test matn"
+];
+$telegram->sendMessage($content);
+
 
