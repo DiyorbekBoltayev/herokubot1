@@ -75,7 +75,7 @@ elseif ($text=='0.5 kilogramm - 💵 50 000 so`m'
 
 
 }
-elseif ($message['contact']['phone_number'] != ""){
+elseif (isset($message['contact'])){
     $option=[
         [$telegram->buildKeyboardButton('🚚 Yetkazib berilsin','false','true')],
         [$telegram->buildKeyboardButton('🚘 O`zim boraman')]
