@@ -29,12 +29,12 @@ if($text=='/start'){
 }elseif ($text=='🚛 Buyurtma berish'){
 
     $option=[
-      [$telegram->buildKeyboardButton("0.5 kilogramm - 50 000")],
-      [$telegram->buildKeyboardButton("1 kilogramm - 90 000")],
-      [$telegram->buildKeyboardButton("2 kilogramm - 170 000")],
-      [$telegram->buildKeyboardButton("3 kilogramm - 250 000")],
-      [$telegram->buildKeyboardButton("5 kilogramm - 400 000")],
-      [$telegram->buildKeyboardButton("10 kilogramm - 750 000")],
+      [$telegram->buildKeyboardButton('0.5 kilogramm - 50 000')],
+      [$telegram->buildKeyboardButton('1 kilogramm - 90 000')],
+      [$telegram->buildKeyboardButton('2 kilogramm - 170 000')],
+      [$telegram->buildKeyboardButton('3 kilogramm - 250 000')],
+      [$telegram->buildKeyboardButton('5 kilogramm - 400 000')],
+      [$telegram->buildKeyboardButton('10 kilogramm - 750 000')],
     ];
     $keyboard=$telegram->buildKeyBoard($option,$onetime=true,$resize=true);
     $content=[
@@ -44,13 +44,13 @@ if($text=='/start'){
 
     ];
     $telegram->sendMessage($content);
-}elseif ($text=="0.5 kilogramm - 50 000"
-    or $text=="1 kilogramm - 90 000"
-    or $text=="2 kilogramm - 170 000"
-    or $text=="3 kilogramm - 250 000"
-    or $text=="5 kilogramm - 400 000"
-    or $text=="10 kilogramm - 750 000"
-    or $text="nega"
+}elseif ($text=='0.5 kilogramm - 50 000'
+    or $text=='1 kilogramm - 90 000'
+    or $text=='2 kilogramm - 170 000'
+    or $text=='3 kilogramm - 250 000'
+    or $text=='5 kilogramm - 400 000'
+    or $text=='10 kilogramm - 750 000'
+    or $text='nega'
 ){
     $option=[
       [$telegram->buildKeyboardButton('📱 Telefon raqamni yuborish',$request=true)]
