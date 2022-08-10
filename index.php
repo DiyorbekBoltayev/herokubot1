@@ -23,14 +23,10 @@ if($text=='/start'){
 }elseif ($text=='📜 Biz haqimizda'){
     $content=[
         'chat_id'=>$chat_id,
-        'text'=>"Biz haqimizda bilib oling https://telegra.ph/Biz-haqimizda-08-10"
+        'text'=>"Biz haqimizda bilib oling <a href='https://telegra.ph/Biz-haqimizda-08-10'>Link</a> "
+        ,'parse_mode'=>'html'
     ];
     $telegram->sendMessage($content);
 }
-$content=[
-    'chat_id'=>$chat_id,
-    'text'=>"$text"
-];
-$telegram->sendMessage($content);
 
 
