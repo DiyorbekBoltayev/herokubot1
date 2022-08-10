@@ -45,12 +45,12 @@ if($text=='/start'){
     ];
     $telegram->sendMessage($content);
 }elseif ($text=='0.5 kilogramm - 50 000'
-    or $text=='1 kilogramm - 90 000'
-    or $text=='2 kilogramm - 170 000'
-    or $text=='3 kilogramm - 250 000'
-    or $text=='5 kilogramm - 400 000'
-    or $text=='10 kilogramm - 750 000'
-    or $text='nega'
+    || $text=='1 kilogramm - 90 000'
+    || $text=='2 kilogramm - 170 000'
+    || $text=='3 kilogramm - 250 000'
+    || $text=='5 kilogramm - 400 000'
+    || $text=='10 kilogramm - 750 000'
+    || $text=='nega'
 ){
     $option=[
       [$telegram->buildKeyboardButton('📱 Telefon raqamni yuborish',$request=true)]
