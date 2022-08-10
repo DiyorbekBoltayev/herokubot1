@@ -66,6 +66,13 @@ elseif ($text=='0.5 kilogramm - 💵 50 000 so`m'
         'text'=>"✅ Kerakli miqdor tanlandi . Telefon raqamingizni yuboring 👇"
     ];
     $telegram->sendMessage($content);
+    $d=json_encode($message,JSON_PRETTY_PRINT);
+    $content=[
+        'chat_id'=>$chat_id,
+        'text'=>$d
+    ];
+    $telegram->sendMessage($content);
+
 }
 elseif ($message['contact']['phone_number'] != ""){
     $option=[
@@ -85,7 +92,7 @@ elseif ($text=='🚘 O`zim boraman'){
     $content=[
         'chat_id'=>$chat_id,
         'text'=>"✅ Buyurtma qabul qilindi.
-         ☎️ Siz bilan tez orada bog'lanamiz."
+        ☎️ Siz bilan tez orada bog'lanamiz."
     ];
     $telegram->sendMessage($content);
 }elseif ($text=='🚚 Yetkazib berilsin'){
