@@ -44,7 +44,7 @@ if($text=='/start'){
 
     ];
     $telegram->sendMessage($content);
-}elseif (strpos($text,'kilogram - 💵') !=false){
+}elseif (strpos($text,'kilogram') !=false){
     $option=[
       [$telegram->buildKeyboardButton('📱 Telefon raqamni yuborish',$request=true)]
     ];
