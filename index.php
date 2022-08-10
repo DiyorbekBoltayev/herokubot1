@@ -5,6 +5,9 @@ include 'Telegram.php';
 $telegram = new Telegram('5594871269:AAEiMFlohmqlRT1tlkRCkRYIFoxx3tMqJHs');
 $chat_id=$telegram->ChatID();
 $text=$telegram->Text();
+$data=$telegram->getData();
+$message=$data['message'];
+
 if($text=='/start'){
     $option=[
       [$telegram->buildKeyboardButton('📜 Biz haqimizda')],
@@ -26,7 +29,8 @@ if($text=='/start'){
         ,'parse_mode'=>'html'
     ];
     $telegram->sendMessage($content);
-}elseif ($text=='🚛 Buyurtma berish'){
+}
+elseif ($text=='🚛 Buyurtma berish'){
 
     $option=[
       [$telegram->buildKeyboardButton('0.5 kilogramm - 💵 50 000 so`m')],
@@ -44,7 +48,8 @@ if($text=='/start'){
 
     ];
     $telegram->sendMessage($content);
-}elseif ($text=='0.5 kilogramm - 💵 50 000 so`m'
+}
+elseif ($text=='0.5 kilogramm - 💵 50 000 so`m'
     || $text=='1 kilogramm - 💵 90 000 so`m'
     || $text=='2 kilogramm - 💵 170 000 so`m'
     || $text=='3 kilogramm - 💵 250 000 so`m'
@@ -62,5 +67,32 @@ if($text=='/start'){
     ];
     $telegram->sendMessage($content);
 }
-
-
+elseif ($message['contact']['phone_number'] != ""){
+    $option=[
+        [$telegram->buildKeyboardButton('🚚 Yetkazib berilsin','false','true')],
+        [$telegram->buildKeyboardButton('🚘 O`zim boraman')]
+    ];
+    $keyboard=$telegram->buildKeyBoard($option,$onetime=true,$resize=true);
+    $content=[
+      'chat_id'=>$chat_id,
+        'reply_markup'=>$keyboard,
+        'text'=>"🗺 Urganch tumani bo'ylab yetkazib berish bepul !
+         🏢 Bizning manzil: Urganch tumani Kattabog' mahallasi Ummon ko'chasi 28-uy"
+    ];
+    $telegram->sendMessage($content);
+}
+elseif ($text=='🚘 O`zim boraman'){
+    $content=[
+        'chat_id'=>$chat_id,
+        'text'=>"✅ Buyurtma qabul qilindi.
+         ☎️ Siz bilan tez orada bog'lanamiz."
+    ];
+    $telegram->sendMessage($content);
+}elseif ($text=='🚚 Yetkazib berilsin'){
+    $d=json_encode($message,JSON_PRETTY_PRINT);
+    $content=[
+        'chat_id'=>$chat_id,
+        'text'=>$d
+    ];
+    $telegram->sendMessage($content);
+}
