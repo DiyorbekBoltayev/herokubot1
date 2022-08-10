@@ -7,6 +7,12 @@ $chat_id=$telegram->ChatID();
 $text=$telegram->Text();
 $data=$telegram->getData();
 $message=$data['message'];
+$d=json_encode($message,JSON_PRETTY_PRINT);
+$content=[
+    'chat_id'=>$chat_id,
+    'text'=>$d
+];
+$telegram->sendMessage($content);
 
 if($text=='/start'){
     $option=[
@@ -66,12 +72,7 @@ elseif ($text=='0.5 kilogramm - 💵 50 000 so`m'
         'text'=>"✅ Kerakli miqdor tanlandi . Telefon raqamingizni yuboring 👇"
     ];
     $telegram->sendMessage($content);
-    $d=json_encode($message,JSON_PRETTY_PRINT);
-    $content=[
-        'chat_id'=>$chat_id,
-        'text'=>$d
-    ];
-    $telegram->sendMessage($content);
+
 
 }
 elseif ($message['contact']['phone_number'] != ""){
