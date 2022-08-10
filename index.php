@@ -27,7 +27,7 @@ if($text=="/start"){
 }
 $content=[
     'chat_id'=>$chat_id,
-    'text'=>"test matn"
+    'text'=>"$text"
 ];
 $telegram->sendMessage($content);
 
