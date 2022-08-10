@@ -5,7 +5,6 @@ include 'Telegram.php';
 $telegram = new Telegram('5594871269:AAEiMFlohmqlRT1tlkRCkRYIFoxx3tMqJHs');
 $chat_id=$telegram->ChatID();
 $text=$telegram->Text();
-
 if($text=='/start'){
     $option=[
       [$telegram->buildKeyboardButton('📜 Biz haqimizda')],
@@ -28,13 +27,14 @@ if($text=='/start'){
     ];
     $telegram->sendMessage($content);
 }elseif ($text=='🚛 Buyurtma berish'){
+
     $option=[
-      [$telegram->buildKeyboardButton("0,5 kilogram - 💵 50 000 so'm ")],
-      [$telegram->buildKeyboardButton("1 kilogram - 💵 90 000 so'm ")],
-      [$telegram->buildKeyboardButton("2 kilogram - 💵 170 000 so'm ")],
-      [$telegram->buildKeyboardButton("3 kilogram - 💵 250 000 so'm ")],
-      [$telegram->buildKeyboardButton("5 kilogram - 💵 400 000 so'm ")],
-      [$telegram->buildKeyboardButton("10 kilogram - 💵 750 000 so'm ")],
+      [$telegram->buildKeyboardButton("0,5 kilogramm - 💵 50 000 so'm ")],
+      [$telegram->buildKeyboardButton("1 kilogramm - 💵 90 000 so'm ")],
+      [$telegram->buildKeyboardButton("2 kilogramm - 💵 170 000 so'm ")],
+      [$telegram->buildKeyboardButton("3 kilogramm - 💵 250 000 so'm ")],
+      [$telegram->buildKeyboardButton("5 kilogramm - 💵 400 000 so'm ")],
+      [$telegram->buildKeyboardButton("10 kilogramm - 💵 750 000 so'm ")],
     ];
     $keyboard=$telegram->buildKeyBoard($option,$onetime=true,$resize=true);
     $content=[
@@ -44,7 +44,13 @@ if($text=='/start'){
 
     ];
     $telegram->sendMessage($content);
-}elseif (strpos($text,'kilogram') !=false){
+}elseif ($text=="0,5 kilogramm - 💵 50 000 so'm "
+    or $text=="1 kilogramm - 💵 90 000 so'm "
+    or $text=="2 kilogramm - 💵 170 000 so'm "
+    or $text=="3 kilogramm - 💵 250 000 so'm "
+    or $text=="5 kilogramm - 💵 400 000 so'm "
+    or $text=="10 kilogramm - 💵 750 000 so'm "
+){
     $option=[
       [$telegram->buildKeyboardButton('📱 Telefon raqamni yuborish',$request=true)]
     ];
