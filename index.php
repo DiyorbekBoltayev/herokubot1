@@ -85,12 +85,11 @@ elseif ($message['contact']['phone_number'] != ""){
     $content=[
       'chat_id'=>$chat_id,
         'reply_markup'=>$keyboard,
-        'text'=>"🗺 Urganch tumani bo'ylab yetkazib berish bepul !
-         🏢 Bizning manzil: Urganch tumani Kattabog' mahallasi Ummon ko'chasi 28-uy"
+        'text'=>" 🗺 Urganch tumani bo'ylab yetkazib berish bepul ! \n 🏢 Bizning manzil: Urganch tumani Kattabog' mahallasi Ummon ko'chasi 28-uy"
     ];
     $telegram->sendMessage($content);
 }
-elseif ($text=='🚘 O`zim boraman'){
+elseif ($text=="🚘 O'zim boraman"){
     $content=[
         'chat_id'=>$chat_id,
         'text'=>"✅ Buyurtma qabul qilindi.
