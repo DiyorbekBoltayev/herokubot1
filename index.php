@@ -8,11 +8,12 @@ $text=$telegram->Text();
 $data=$telegram->getData();
 $message=$data['message'];
 //$d=json_encode($message['contact'],JSON_PRETTY_PRINT);
-//$content=[
-//    'chat_id'=>$chat_id,
-//    'text'=>$d
-//];
-//$telegram->sendMessage($content);
+$d=$message['contact']['phone_number'] !="" ? "nomer galdi" : "nomer yoq";
+$content=[
+    'chat_id'=>$chat_id,
+    'text'=>$d
+];
+$telegram->sendMessage($content);
 
 if($text=='/start'){
     $option=[
@@ -75,7 +76,7 @@ elseif ($text=='0.5 kilogramm - 💵 50 000 so`m'
 
 
 }
-elseif ($message['contact'] != null){
+elseif ($message['contact']['phone_number'] != ''){
     $option=[
         [$telegram->buildKeyboardButton('🚚 Yetkazib berilsin','false','true')],
         [$telegram->buildKeyboardButton('🚘 O`zim boraman')]
