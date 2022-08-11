@@ -91,7 +91,7 @@ elseif (file_get_contents('step.txt')=="phone"){
     $telegram->sendMessage($content);
     file_put_contents('step.txt','location');
 }
-elseif (file_get_contents('step.txt')=='location'){
+elseif (file_get_contents('step.txt')=='location' || $text=="🚘 O'zim boraman"){
     $content=[
         'chat_id'=>$chat_id,
         'text'=>"  ✅ Buyurtma qabul qilindi.\n☎️ Siz bilan tez orada bog'lanamiz."
