@@ -8,12 +8,12 @@ $text=$telegram->Text();
 $data=$telegram->getData();
 $message=$data['message'];
 //$d=json_encode($message['contact'],JSON_PRETTY_PRINT);
-$d=$message['contact']['phone_number'] !="" ? "nomer galdi" : "nomer yoq";
-$content=[
-    'chat_id'=>$chat_id,
-    'text'=>$d
-];
-$telegram->sendMessage($content);
+//$d=$message['contact']['phone_number'] !="" ? "nomer galdi" : "nomer yoq";
+//$content=[
+//    'chat_id'=>$chat_id,
+//    'text'=>$d
+//];
+//$telegram->sendMessage($content);
 
 if($text=='/start'){
     $option=[
@@ -86,22 +86,16 @@ elseif (file_get_contents('step.txt')=="phone"){
     $content=[
       'chat_id'=>$chat_id,
         'reply_markup'=>$keyboard,
-        'text'=>"  🗺 Urganch tumani bo'ylab yetkazib berish bepul ! \n 🏢 Bizning manzil: Urganch tumani Kattabog' mahallasi Ummon ko'chasi 28-uy"
+        'text'=>"  🗺 Urganch tumani bo'ylab yetkazib berish bepul !\n 🏢 Bizning manzil: Urganch tumani Kattabog' mahallasi Ummon ko'chasi 28-uy"
     ];
     $telegram->sendMessage($content);
     file_put_contents('step.txt','location');
 }
-elseif ($text=="🚘 O'zim boraman"){
+elseif (file_get_contents('step.txt')=='location'){
     $content=[
         'chat_id'=>$chat_id,
-        'text'=>"  ✅ Buyurtma qabul qilindi. \n☎️ Siz bilan tez orada bog'lanamiz."
+        'text'=>"  ✅ Buyurtma qabul qilindi.\n☎️ Siz bilan tez orada bog'lanamiz."
     ];
     $telegram->sendMessage($content);
-}elseif ($text=='🚚 Yetkazib berilsin'){
-    $d=json_encode($message,JSON_PRETTY_PRINT);
-    $content=[
-        'chat_id'=>$chat_id,
-        'text'=>$d
-    ];
-    $telegram->sendMessage($content);
+    file_put_contents('step.txt','tugadi');
 }
