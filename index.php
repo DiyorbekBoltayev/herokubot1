@@ -110,14 +110,14 @@ elseif (file_get_contents('step.txt')=="phone"){
     } else{
 
     $option=[
-        [$telegram->buildKeyboardButton("🚚 Yetkazib berilsin",$request_contact=false,$request_location=true)],
+        [$telegram->buildKeyboardButton("🔻 Joylashuvni yuborish",$request_contact=false,$request_location=true)],
         [$telegram->buildKeyboardButton("🚘 O'zim boraman")]
     ];
     $keyboard=$telegram->buildKeyBoard($option,$onetime=true,$resize=true);
     $content=[
       'chat_id'=>$chat_id,
         'reply_markup'=>$keyboard,
-        'text'=>"  🗺 Urganch tumani bo'ylab yetkazib berish bepul !\n🏢 Bizning manzil: Urganch tumani Kattabog' mahallasi Ummon ko'chasi 28-uy"
+        'text'=>"  🗺 Urganch tumani bo'ylab yetkazib berish bepul !\n🚛 Yetkazib berish uchun manzilni kiriting yoki joylashuvni yuboring. Istasangiz o'zingiz kelib olib ketishingiz ham mumkin. \n 🏢 Bizning manzil: Urganch tumani Kattabog' mahallasi Ummon ko'chasi 28-uy"
     ];
     $telegram->sendMessage($content);
     file_put_contents('step.txt','location');
