@@ -78,6 +78,37 @@ elseif ($text=='0.5 kilogramm - 💵 50 000 so`m'
 
 }
 elseif (file_get_contents('step.txt')=="phone"){
+    if($message['contact']['phone_number'] == ""){
+        $phone=substr($text,1);
+        if(is_numeric($phone)){
+            $option=[
+                [$telegram->buildKeyboardButton("🚚 Yetkazib berilsin",$request_contact=false,$request_location=true)],
+                [$telegram->buildKeyboardButton("🚘 O'zim boraman")]
+            ];
+            $keyboard=$telegram->buildKeyBoard($option,$onetime=true,$resize=true);
+            $content=[
+                'chat_id'=>$chat_id,
+                'reply_markup'=>$keyboard,
+                'text'=>"  🗺 Urganch tumani bo'ylab yetkazib berish bepul !\n 🏢 Bizning manzil: Urganch tumani Kattabog' mahallasi Ummon ko'chasi 28-uy"
+            ];
+            $telegram->sendMessage($content);
+            file_put_contents('step.txt','location');
+        }
+        else{
+            $option=[
+                [$telegram->buildKeyboardButton('📱 Telefon raqamni yuborish',$request_contact=true)]
+            ];
+            $keyboard=$telegram->buildKeyBoard($option,$onetime=true,$resize=true);
+            $content=[
+                'chat_id'=>$chat_id,
+                'reply_markup'=>$keyboard,
+                'text'=>"Telefon raqamini kirtishda xatolik , iltimos qaytadan  kiriting, masalan: 883621700"
+            ];
+            $telegram->sendMessage($content);
+            file_put_contents('step.txt','phone');
+        }
+    } else{
+
     $option=[
         [$telegram->buildKeyboardButton("🚚 Yetkazib berilsin",$request_contact=false,$request_location=true)],
         [$telegram->buildKeyboardButton("🚘 O'zim boraman")]
@@ -90,6 +121,7 @@ elseif (file_get_contents('step.txt')=="phone"){
     ];
     $telegram->sendMessage($content);
     file_put_contents('step.txt','location');
+}
 }
 elseif (file_get_contents('step.txt')=='location' || $text=="🚘 O'zim boraman"){
     $content=[
