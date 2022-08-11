@@ -64,7 +64,7 @@ elseif ($text=='0.5 kilogramm - 💵 50 000 so`m'
     || $text=='10 kilogramm - 💵 750 000 so`m'
 ){
     $option=[
-      [$telegram->buildKeyboardButton('📱 Telefon raqamni yuborish',$request=true)]
+      [$telegram->buildKeyboardButton('📱 Telefon raqamni yuborish',$request_contact=true)]
     ];
     $keyboard=$telegram->buildKeyBoard($option,$onetime=true,$resize=true);
     $content=[
@@ -92,7 +92,7 @@ elseif ($message['contact']['phone_number'] != ""){
 elseif ($text=="🚘 O'zim boraman"){
     $content=[
         'chat_id'=>$chat_id,
-        'text'=>"  ✅ Buyurtma qabul qilindi. \n ☎️ Siz bilan tez orada bog'lanamiz."
+        'text'=>"  ✅ Buyurtma qabul qilindi. \n☎️ Siz bilan tez orada bog'lanamiz."
     ];
     $telegram->sendMessage($content);
 }elseif ($text=='🚚 Yetkazib berilsin'){
