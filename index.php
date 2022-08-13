@@ -131,3 +131,4 @@ elseif (file_get_contents('step.txt')=='location' || $text=="🚘 O'zim boraman"
     $telegram->sendMessage($content);
     file_put_contents('step.txt','tugadi');
 }
+echo "nice";
