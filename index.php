@@ -54,10 +54,18 @@ function start(){
         $sql="insert into users (chat_id) values ('$chat_id')";
 
         if (mysqli_query($conn,$sql)) {
-            echo "New record created successfully";
+            $content=[
+                'chat_id'=>$chat_id,
+                'text'=>"yangi user yaratildi !"
+            ];
         } else {
-            echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+            $content=[
+                'chat_id'=>$chat_id,
+                'text'=>"xatolik bo'ldi !"
+            ];
         }
+
+        $telegram->sendMessage($content);
     }
 
 
