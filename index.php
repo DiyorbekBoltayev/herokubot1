@@ -47,7 +47,7 @@ elseif (file_get_contents('step.txt')=='location' || $text=="🚘 O'zim boraman"
 echo "nice2";
 
 function start(){
-    global $telegram,$chat_id;
+    global $telegram,$chat_id,$conn;
     $sql = "SELECT * from users WHERE chat_id=$chat_id";
     $result=mysqli_query($conn,$sql);
     if($result->num_rows == 0){
