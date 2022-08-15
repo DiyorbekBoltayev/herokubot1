@@ -48,25 +48,25 @@ echo "nice2";
 
 function start(){
     global $telegram,$chat_id,$conn;
-    $sql = "SELECT * from users WHERE chat_id=$chat_id";
-    $result=mysqli_query($conn,$sql);
-    if($result->num_rows == 0){
-        $sql="insert into users (chat_id) values ('$chat_id')";
-
-        if (mysqli_query($conn,$sql)) {
-            $content=[
-                'chat_id'=>$chat_id,
-                'text'=>"yangi user yaratildi !"
-            ];
-        } else {
-            $content=[
-                'chat_id'=>$chat_id,
-                'text'=>"xatolik bo'ldi !"
-            ];
-        }
-
-        $telegram->sendMessage($content);
-    }
+//    $sql = "SELECT * from users WHERE chat_id=$chat_id";
+//    $result=mysqli_query($conn,$sql);
+//    if($result->num_rows == 0){
+//        $sql="insert into users (chat_id) values ('$chat_id')";
+//
+//        if (mysqli_query($conn,$sql)) {
+//            $content=[
+//                'chat_id'=>$chat_id,
+//                'text'=>"yangi user yaratildi !"
+//            ];
+//        } else {
+//            $content=[
+//                'chat_id'=>$chat_id,
+//                'text'=>"xatolik bo'ldi !"
+//            ];
+//        }
+//
+//        $telegram->sendMessage($content);
+//    }
 
 
     $option=[
