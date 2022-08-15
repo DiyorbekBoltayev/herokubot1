@@ -48,7 +48,7 @@ echo "nice2";
 
 function start(){
     global $telegram,$chat_id;
-    $sql = "SELECT * from users WHERE chat_id=$chat_id";
+    $sql = "SELECT * from users WHERE chat_id='$chat_id'";
     $result=mysqli_query($conn,$sql);
     if($result->num_rows == 0){
         $sql="insert into users (chat_id) values ('$chat_id')";
