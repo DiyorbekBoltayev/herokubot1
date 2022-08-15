@@ -52,8 +52,15 @@ function start(){
     $result=mysqli_query($conn,$sql);
     if($result->num_rows == 0){
         $sql="insert into users (chat_id) values ('$chat_id')";
-        mysqli_query($conn,$sql);
+
+        if (mysqli_query($conn,$sql)) {
+            echo "New record created successfully";
+        } else {
+            echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+        }
     }
+
+
     $option=[
         [$telegram->buildKeyboardButton('📜 Biz haqimizda')],
         [$telegram->buildKeyboardButton('🚛 Buyurtma berish')],
