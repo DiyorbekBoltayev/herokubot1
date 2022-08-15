@@ -1,4 +1,5 @@
 <?php
+require_once 'connect.php';
 include 'Telegram.php';
  $telegram = new Telegram('5594871269:AAEiMFlohmqlRT1tlkRCkRYIFoxx3tMqJHs');
 $chat_id=$telegram->ChatID();
@@ -47,6 +48,12 @@ echo "nice2";
 
 function start(){
     global $telegram,$chat_id;
+    $sql = "SELECT * from users WHERE chat_id=$chat_id";
+    $result=mysqli_query($conn,$sql);
+    if($result->num_rows == 0){
+        $sql="insert into users (chat_id) values ('$chat_id')";
+        mysqli_query($conn,$sql);
+    }
     $option=[
         [$telegram->buildKeyboardButton('📜 Biz haqimizda')],
         [$telegram->buildKeyboardButton('🚛 Buyurtma berish')],
