@@ -119,7 +119,7 @@ global $telegram,$chat_id,$massa;
 function massaTanlandi(){
     global $telegram,$chat_id,$text,$massa,$conn;
     $index=array_search($text,$massa);
-    $sql="update users set massa='$index',step='phone' where chat_id='$chat_id'";
+    $sql="update users set massa='$index',step='phone',otmen='' where chat_id='$chat_id'";
     mysqli_query($conn,$sql);
 
     $option=[
