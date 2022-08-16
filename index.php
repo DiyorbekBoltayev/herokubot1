@@ -9,7 +9,7 @@ $message=$data['message'];
 $js=json_encode($message,JSON_PRETTY_PRINT);
 $name=$message['from']['first_name'];
 $date=date('Y-m-d H:i:s',$message['date']);
-$now=$data('y-m-d H:i:s',time());
+$now=date('y-m-d H:i:s',time());
 $telegram->sendMessage(['chat_id'=>$chat_id,'text'=>"$data $now stepdan aldin $js"]);
 $step="";
 $sql = "SELECT chat_id from users WHERE chat_id=$chat_id";
