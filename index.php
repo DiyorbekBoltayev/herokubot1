@@ -18,7 +18,7 @@ if($result->num_rows != 0){
     $row = $result->fetch_assoc();
     $step=$row['step'];
 }
-$telegram->sendMessage(['chat_id'=>$chat_id,'text'=>"stepdan keyin $text"]);
+$telegram->sendMessage(['chat_id'=>$chat_id,'text'=>"stepdan keyin $text $step"]);
 
 //$d=json_encode($message['contact'],JSON_PRETTY_PRINT);
 //$d=$message['contact']['phone_number'] !="" ? "nomer galdi" : "nomer yoq";
