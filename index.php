@@ -58,15 +58,18 @@ elseif ($step=="phone"){
     telefonYuborildi();
 }
 elseif ($step=='location' || $text=="🚘 O'zim boraman"){
-//    if($message['location']['latitude']==""){
-//        $sql="update users set address='$text' where chat_id='$chat_id'";
-//        mysqli_query($conn,$sql);
-//    }else{
-//        $latitude=$message['location']['latitude'];
-//        $longitude=$message['location']['longitude'];
-//        $sql="update users set latitude='$latitude',longitude='$longitude' where chat_id='$chat_id'";
-//        mysqli_query($conn,$sql);
-//    }
+    if($text=="🚘 O'zim boraman"){
+        $text="Bizdan kelib oladi";
+    }
+    if($message['location']['latitude']==""){
+        $sql="update users set address='$text' where chat_id='$chat_id'";
+        mysqli_query($conn,$sql);
+    }else{
+        $latitude=$message['location']['latitude'];
+        $longitude=$message['location']['longitude'];
+        $sql="update users set latitude='$latitude',longitude='$longitude' where chat_id='$chat_id'";
+        mysqli_query($conn,$sql);
+    }
     buyurtmaQabulQilindi();
 }
 function start(){
