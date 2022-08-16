@@ -206,7 +206,7 @@ function buyurtmaBekorQilindi(){
     $content=[
         'chat_id'=>$chat_id,
         'reply_markup'=>$keyboard,
-        'text'=>'⚠️ Joriy buyurtma bekor qilindi ! \n♻️ Istasangiz yangidan buyurtma qilishingiz mumkin'
+        'text'=>"⚠️ Joriy buyurtma bekor qilindi ! \n♻️ Istasangiz yangidan buyurtma qilishingiz mumkin"
 
     ];
     $telegram->sendMessage($content);
