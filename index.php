@@ -6,11 +6,8 @@ $chat_id=$telegram->ChatID();
 $text=$telegram->Text();
 $data=$telegram->getData();
 $message=$data['message'];
-$js=json_encode($message,JSON_PRETTY_PRINT);
 $name=$message['from']['first_name'];
 $date=date('Y-m-d H:i:s',$message['date']);
-$now=date('y-m-d H:i:s',time());
-$telegram->sendMessage(['chat_id'=>$chat_id,'text'=>"$date $now stepdan aldin $js"]);
 $step="";
 $sql = "SELECT chat_id from users WHERE chat_id=$chat_id";
 $result=mysqli_query($conn,$sql);
@@ -20,15 +17,6 @@ if($result->num_rows != 0){
     $row = $result->fetch_assoc();
     $step=$row['step'];
 }
-$telegram->sendMessage(['chat_id'=>$chat_id,'text'=>"stepdan keyin $text $step"]);
-
-//$d=json_encode($message['contact'],JSON_PRETTY_PRINT);
-//$d=$message['contact']['phone_number'] !="" ? "nomer galdi" : "nomer yoq";
-//$content=[
-//    'chat_id'=>$chat_id,
-//    'text'=>$d
-//];
-//$telegram->sendMessage($content);
 $massa=[
     '0.5 kilogramm - 💵 50 000 so`m',
     '1 kilogramm - 💵 90 000 so`m',
@@ -62,12 +50,12 @@ elseif ($step=='location' || $text=="🚘 O'zim boraman"){
         $text="Bizdan kelib oladi";
     }
     if($message['location']['latitude']==""){
-        $sql="update users set address='$text' where chat_id='$chat_id'";
+        $sql="update users set address='$text',step='tugadi' where chat_id='$chat_id'";
         mysqli_query($conn,$sql);
     }else{
         $latitude=$message['location']['latitude'];
         $longitude=$message['location']['longitude'];
-        $sql="update users set latitude='$latitude',longitude='$longitude' where chat_id='$chat_id'";
+        $sql="update users set latitude='$latitude',longitude='$longitude',step='tugadi' where chat_id='$chat_id'";
         mysqli_query($conn,$sql);
     }
     buyurtmaQabulQilindi();
