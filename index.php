@@ -60,6 +60,11 @@ elseif ($step=='location' || $text=="🚘 O'zim boraman"){
     }
     buyurtmaQabulQilindi();
 }
+elseif ($text=='❌ Buyurtmani bekor qilish'){
+    $sql="update users set otmen=1,step='start' where chat_id='$chat_id'";
+    mysqli_query($conn,$sql);
+    buyurtmaBekorQilindi();
+}
 function start(){
     global $telegram,$chat_id,$conn,$name,$date;
     $sql = "SELECT * from users WHERE chat_id='$chat_id'";
@@ -179,10 +184,30 @@ function telefonXato(){
 }
 function buyurtmaQabulQilindi(){
     global $telegram,$chat_id;
+    $option=[
+        [$telegram->buildKeyboardButton('❌ Buyurtmani bekor qilish')]
+    ];
+    $keyboard=$telegram->buildKeyBoard($option,$onetime=true,$resize=true);
     $content=[
         'chat_id'=>$chat_id,
+        'reply_markup'=>$keyboard,
         'text'=>"  ✅ Buyurtma qabul qilindi.\n☎️ Siz bilan tez orada bog'lanamiz."
     ];
     $telegram->sendMessage($content);
 
+}
+function buyurtmaBekorQilindi(){
+    global $telegram,$chat_id;
+    $option=[
+        [$telegram->buildKeyboardButton('📜 Biz haqimizda')],
+        [$telegram->buildKeyboardButton('🚛 Buyurtma berish')],
+    ];
+    $keyboard=$telegram->buildKeyBoard($option, $onetime=false , $resize=true);
+    $content=[
+        'chat_id'=>$chat_id,
+        'reply_markup'=>$keyboard,
+        'text'=>'⚠️ Joriy buyurtma bekor qilindi ! \n♻️ Istasangiz yangidan buyurtma qilishingiz mumkin'
+
+    ];
+    $telegram->sendMessage($content);
 }
