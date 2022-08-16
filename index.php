@@ -50,12 +50,12 @@ elseif ($step=='location' || $text=="🚘 O'zim boraman"){
         $text="Bizdan kelib oladi";
     }
     if($message['location']['latitude']==""){
-        $sql="update users set address='$text',step='tugadi' where chat_id='$chat_id'";
+        $sql="update users set latitude='',longitude='', address='$text',step='tugadi' where chat_id='$chat_id'";
         mysqli_query($conn,$sql);
     }else{
         $latitude=$message['location']['latitude'];
         $longitude=$message['location']['longitude'];
-        $sql="update users set latitude='$latitude',longitude='$longitude',step='tugadi' where chat_id='$chat_id'";
+        $sql="update users set address='',latitude='$latitude',longitude='$longitude',step='tugadi' where chat_id='$chat_id'";
         mysqli_query($conn,$sql);
     }
     buyurtmaQabulQilindi();
