@@ -64,6 +64,13 @@ elseif ($text=='❌ Buyurtmani bekor qilish'){
     $sql="update users set otmen=1,step='start' where chat_id='$chat_id'";
     mysqli_query($conn,$sql);
     buyurtmaBekorQilindi();
+}else{
+    $content=[
+        'chat_id'=>$chat_id,
+        'text'=>"⚠️ Bunday buyruq mavjud emas ! \nIltimos quyidagi tugmalardan birini tanlang 👇"
+
+    ];
+    $telegram->sendMessage($content);
 }
 function start(){
     global $telegram,$chat_id,$conn,$name,$date;
