@@ -6,6 +6,8 @@ $chat_id=$telegram->ChatID();
 $text=$telegram->Text();
 $data=$telegram->getData();
 $message=$data['message'];
+$ma=json_encode($message,JSON_PRETTY_PRINT);
+$telegram->sendMessage(['chat_id'=>$chat_id,'text'=>$ma]);
 $name=$message['from']['first_name'];
 $date=date('Y-m-d H:i:s',$message['date']);
 $step="";
