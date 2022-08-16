@@ -69,7 +69,7 @@ elseif ($step=='location' || $text=="🚘 O'zim boraman"){
 }
 function start(){
     global $telegram,$chat_id,$conn,$name,$date;
-    $sql = "SELECT * from users WHERE chat_id=$chat_id";
+    $sql = "SELECT * from users WHERE chat_id='$chat_id'";
     $result=mysqli_query($conn,$sql);
     if($result->num_rows == 0){
        $sql="insert into users (chat_id,name,created_at,step) values ('$chat_id','$name','$date','start')";
