@@ -4,7 +4,6 @@ include 'Telegram.php';
  $telegram = new Telegram('5594871269:AAEiMFlohmqlRT1tlkRCkRYIFoxx3tMqJHs');
 $chat_id=$telegram->ChatID();
 $text=$telegram->Text();
-$text="/start";
 $data=$telegram->getData();
 $message=$data['message'];
 $name=$message['from']['first_name'];
@@ -51,7 +50,13 @@ elseif ($step=='location' || $text=="🚘 O'zim boraman"){
         $text="Bizdan kelib oladi";
     }
     if($message['location']['latitude']==""){
-        $sql="update users set latitude='',longitude='', address='$text',step='tugadi' where chat_id='$chat_id'";
+        $satr="";
+        for($i=0;$i<strlen();$i++){
+            if($text[$i] != "'"){
+                $satr.=$text[$i];
+            }
+        }
+        $sql="update users set latitude='',longitude='', address='$satr',step='tugadi' where chat_id='$chat_id'";
         mysqli_query($conn,$sql);
     }else{
         $latitude=$message['location']['latitude'];
