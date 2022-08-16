@@ -1,7 +1,7 @@
 <?php
 require_once 'connect.php';
 include 'Telegram.php';
- $telegram = new Telegram('5594871269:AAEiMFlohmqlRT1tlkRCkRYIFoxx3tMqJHs');
+ $telegram = new Telegram('5765473868:AAFTjhnNlQFCl5714oJ2Sc5_FLwoNhnoAP0');
 $chat_id=$telegram->ChatID();
 $text=$telegram->Text();
 $data=$telegram->getData();
