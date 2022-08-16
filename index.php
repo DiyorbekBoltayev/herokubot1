@@ -4,7 +4,6 @@ include 'Telegram.php';
  $telegram = new Telegram('5594871269:AAEiMFlohmqlRT1tlkRCkRYIFoxx3tMqJHs');
 $chat_id=$telegram->ChatID();
 $text=$telegram->Text();
-$text="/start";
 $data=$telegram->getData();
 $message=$data['message'];
 $name=$message['from']['first_name'];
@@ -52,7 +51,7 @@ elseif ($step=='location' || $text=="🚘 O'zim boraman"){
     }
     if($message['location']['latitude']==""){
         $satr="";
-        for($i=0;$i<strlen();$i++){
+        for($i=0;$i<strlen($text);$i++){
             if($text[$i] != "'"){
                 $satr.=$text[$i];
             }
