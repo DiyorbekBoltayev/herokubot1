@@ -53,17 +53,23 @@ elseif ($step=="phone"){
     telefonYuborildi();
 }
 elseif ($step=='location' || $text=="🚘 O'zim boraman"){
-
+    if($message['location']['latitude']==""){
+        $sql="update users set address='$text' where chat_id='$chat_id'";
+        mysqli_query($conn,$sql);
+    }else{
+        $latitude=$message['location']['latitude'];
+        $longitude=$message['location']['longitude'];
+        $sql="update users set latitude='$latitude',longitude='$longitude' where chat_id='$chat_id'";
+        mysqli_query($conn,$sql);
+    }
     buyurtmaQabulQilindi();
 }
-echo "nice5";
-
 function start(){
     global $telegram,$chat_id,$conn,$name,$date;
     $sql = "SELECT * from users WHERE chat_id=$chat_id";
     $result=mysqli_query($conn,$sql);
     if($result->num_rows == 0){
-       $sql="insert into users (chat_id,name,created_at) values ('$chat_id','$name','$date')";
+       $sql="insert into users (chat_id,name,created_at,step) values ('$chat_id','$name','$date','start')";
        mysqli_query($conn,$sql);
     }
 
