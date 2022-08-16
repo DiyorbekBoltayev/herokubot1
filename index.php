@@ -8,6 +8,7 @@ $data=$telegram->getData();
 $message=$data['message'];
 $name=$message['from']['first_name'];
 $date=date('Y-m-d',$message['date']);
+$telegram->sendMessage(['chat_id'=>$chat_id,'text'=>'stepdan aldin']);
 $step="";
 $sql = "SELECT chat_id from users WHERE chat_id=$chat_id";
 $result=mysqli_query($conn,$sql);
@@ -17,6 +18,8 @@ if($result->num_rows != 0){
     $row = $result->fetch_assoc();
     $step=$row['step'];
 }
+$telegram->sendMessage(['chat_id'=>$chat_id,'text'=>'stepdan keyin']);
+
 //$d=json_encode($message['contact'],JSON_PRETTY_PRINT);
 //$d=$message['contact']['phone_number'] !="" ? "nomer galdi" : "nomer yoq";
 //$content=[
