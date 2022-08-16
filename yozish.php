@@ -9,7 +9,7 @@ $longitude="60.6315755";
 $step='start';
 $address="";
 $created_at='2022-08-15';
-$sql = "SELECT * from users WHERE chat_id=$chat_id";
+$sql = "SELECT chat_id from users WHERE chat_id=$chat_id";
 $result=mysqli_query($conn,$sql);
 if($result->num_rows == 0){
     $sql="insert into users (chat_id) values ('$chat_id')";
@@ -24,9 +24,12 @@ if($result->num_rows == 0){
 //    echo "Error: " . $sql . "<br>" . mysqli_error($conn);
 //}
 //
-//$sql = "UPDATE users SET created_at='2022-08-15' WHERE chat_id=1701";
-//
-//if (mysqli_query($conn, $sql)) {
+//$sql = "UPDATE users SET created_at='2022-08-00' ,step='foo' WHERE chat_id=1701";
+$sql="select step from users where chat_id=1701";
+$result=mysqli_query($conn, $sql);
+$row = $result->fetch_assoc();
+var_dump($row['step']);
+//if ($result) {
 //    echo "Record updated successfully";
 //} else {
 //    echo "Error updating record: " . mysqli_error($conn);

@@ -6,6 +6,17 @@ $chat_id=$telegram->ChatID();
 $text=$telegram->Text();
 $data=$telegram->getData();
 $message=$data['message'];
+$name=$message['from']['first_name'];
+$date=date('Y-m-d',$message['date']);
+$step="";
+$sql = "SELECT chat_id from users WHERE chat_id=$chat_id";
+$result=mysqli_query($conn,$sql);
+if($result->num_rows != 0){
+    $sql="select step from users where chat_id='$chat_id'";
+    $result=mysqli_query($conn, $sql);
+    $row = $result->fetch_assoc();
+    $step=$row['step'];
+}
 //$d=json_encode($message['contact'],JSON_PRETTY_PRINT);
 //$d=$message['contact']['phone_number'] !="" ? "nomer galdi" : "nomer yoq";
 //$content=[
@@ -38,20 +49,21 @@ elseif ($text==$massa[0]
     || $text==$massa[5]){
     massaTanlandi();
 }
-elseif (file_get_contents('step.txt')=="phone"){
+elseif ($step=="phone"){
     telefonYuborildi();
 }
-elseif (file_get_contents('step.txt')=='location' || $text=="🚘 O'zim boraman"){
+elseif ($step=='location' || $text=="🚘 O'zim boraman"){
+
     buyurtmaQabulQilindi();
 }
-echo "nice2";
+echo "nice5";
 
 function start(){
-    global $telegram,$chat_id,$conn;
+    global $telegram,$chat_id,$conn,$name,$date;
     $sql = "SELECT * from users WHERE chat_id=$chat_id";
     $result=mysqli_query($conn,$sql);
     if($result->num_rows == 0){
-       $sql="insert into users (chat_id) values ('$chat_id')";
+       $sql="insert into users (chat_id,name,created_at) values ('$chat_id','$name','$date')";
        mysqli_query($conn,$sql);
     }
 
@@ -64,7 +76,7 @@ function start(){
     $content=[
         'chat_id'=>$chat_id,
         'reply_markup'=>$keyboard,
-        'text'=>"Assalomu alaykum, Botimizga xush kelibsiz !  Bot orqali masofadan turib 🍯 asal buyurtma qilishingiz mumkin !"
+        'text'=>"Assalomu alaykum '$name', Botimizga xush kelibsiz !  Bot orqali masofadan turib 🍯 asal buyurtma qilishingiz mumkin !"
 
     ];
     $telegram->sendMessage($content);
@@ -98,8 +110,10 @@ global $telegram,$chat_id,$massa;
     $telegram->sendMessage($content);
 }
 function massaTanlandi(){
-    global $telegram,$chat_id,$text,$massa;
+    global $telegram,$chat_id,$text,$massa,$conn;
     $index=array_search($text,$massa);
+    $sql="update users set massa='$index',step='phone' where chat_id='$chat_id'";
+    mysqli_query($conn,$sql);
 
     $option=[
         [$telegram->buildKeyboardButton('📱 Telefon raqamni yuborish',$request_contact=true)]
@@ -111,19 +125,23 @@ function massaTanlandi(){
         'text'=>"✅ Kerakli miqdor tanlandi . Telefon raqamingizni yuboring 👇"
     ];
     $telegram->sendMessage($content);
-    file_put_contents('step.txt','phone');
 
 }
 function telefonYuborildi(){
-    global $message,$text;
+    global $message,$text,$conn,$chat_id;
     if($message['contact']['phone_number'] == ""){
         $phone=substr($text,1);
         if(is_numeric($phone)){
+            $sql="update users set phone='$text',step='location' where chat_id='$chat_id'";
+            mysqli_query($conn,$sql);
             joylashuvYuborish();
         }else{
             telefonXato();
         }
     } else{
+        $t=$message['contact']['phone_number'];
+        $sql="update users set phone='$t',step='location' where chat_id='$chat_id'";
+        mysqli_query($conn,$sql);
         joylashuvYuborish();
     }
 
@@ -141,10 +159,11 @@ global $telegram,$chat_id;
         'text'=>"  🗺 Urganch tumani bo'ylab yetkazib berish bepul !\n🚛 Yetkazib berish uchun manzilni kiriting yoki joylashuvni yuboring. Istasangiz o'zingiz kelib olib ketishingiz ham mumkin. \n 🏢 Bizning manzil: Urganch tumani Kattabog' mahallasi Ummon ko'chasi 28-uy"
     ];
     $telegram->sendMessage($content);
-    file_put_contents('step.txt','location');
 }
 function telefonXato(){
-    global $telegram,$chat_id;
+    global $telegram,$chat_id,$conn;
+    $sql="update users set step='phone' where chat_id='$chat_id'";
+    mysqli_query($conn,$sql);
     $option=[
         [$telegram->buildKeyboardButton('📱 Telefon raqamni yuborish',$request_contact=true)]
     ];
@@ -155,7 +174,6 @@ function telefonXato(){
         'text'=>"Telefon raqamini kirtishda xatolik , iltimos qaytadan  kiriting, masalan: 883621700"
     ];
     $telegram->sendMessage($content);
-    file_put_contents('step.txt','phone');
 }
 function buyurtmaQabulQilindi(){
     global $telegram,$chat_id;
@@ -164,5 +182,5 @@ function buyurtmaQabulQilindi(){
         'text'=>"  ✅ Buyurtma qabul qilindi.\n☎️ Siz bilan tez orada bog'lanamiz."
     ];
     $telegram->sendMessage($content);
-    file_put_contents('step.txt','tugadi');
+
 }
