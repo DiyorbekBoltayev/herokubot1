@@ -34,7 +34,7 @@
         if (mysqli_num_rows($result) > 0) {
         while($row = mysqli_fetch_assoc($result)) {
         ?>
-        <div class="col-sm-10 col-lg-3 p-4 col-md-10 card " style="border: 1px  solid blue; height: 380px; box-shadow: 0px 0px 10px 10px #c6c6c8">
+        <div class="col-sm-10 col-lg-3 p-4 col-md-10 card " style="border: 1px  solid blue; height: 400px; box-shadow: 0px 0px 10px 10px #c6c6c8">
             <p>👤 Buyurtmachi ismi: <?php echo $row['name'] ?></p>
             <p>📱 Telefon raqami: <?php echo $row['phone'] ?></p>
             <p>🍯 Miqdor: <?php echo $massa[$row['massa']] ?></p>
