@@ -39,7 +39,7 @@
             <p>📱 Telefon raqami: <?php echo $row['phone'] ?></p>
             <p>🍯 Miqdor: <?php echo $massa[$row['massa']] ?></p>
             <p>⛳️ Manzil: <?php if($row['latitude']  != ""){
-                echo "<br></br>latitude:".$row['latitude']."<br> longitude:".$row['longitude'];
+                echo "<br>latitude:".$row['latitude']."<br> longitude:".$row['longitude'];
             } else {
                 echo $row['address'];
                 }?></p>
